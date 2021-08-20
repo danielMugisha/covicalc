@@ -1,38 +1,329 @@
-.App {
-  text-align: center;
+.header {
+	background-color: #2fc8b8;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+	width: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo {
+	font-size: 42px;
+	color: #ffffff;
+	font-family: "Bebas Neue", cursive;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.contact > button {
+	font-family: "Roboto", sans-serif;
+	color: #ffffff;
+	border-radius: 6px;
+	background-color: #1e776e;
+	border: none;
+	width: 130px;
+	height: 35px;
+	font-weight: 500;
+	letter-spacing: 1px;
+}
+.updates {
+	font-size: 72px;
+	font-family: "Bebas Neue", cursive;
+	color: #ffffff;
 }
 
-.App-link {
-  color: #61dafb;
+.labelText {
+	font-size: 18px;
+	font-family: "Roboto", sans-serif;
+	color: #ffffff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search {
+	width: 600px;
+	display: flex;
+	background-color: #e6f5f3;
+	height: 45px;
+	border-radius: 6px;
+	padding: 3px;
+}
+
+.searchCombo {
+	width: 250px;
+}
+.calendarBox {
+	width: 250px;
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	background-color: #ffffff;
+	margin: 0 3px;
+	font-weight: "700";
+}
+.submitButton {
+	height: 100%;
+	width: 100px;
+}
+
+.submitButton > button {
+	height: 100%;
+	width: 100%;
+	background-color: #1e776e;
+	border: none;
+	border-radius: 0 6px 6px 0;
+	color: #ffffff;
+	font-family: "Roboto", sans-serif;
+	font-weight: 500;
+	letter-spacing: 1px;
+}
+
+.cumulative {
+	margin-top: 16px;
+	width: 70%;
+	background-color: #1e776e;
+	height: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 6px 6px 0 0;
+}
+
+.bigNumber {
+	font-family: "Roboto", sans-serif;
+	font-size: 96px;
+	color: #2fc8b8;
+	font-weight: 300;
+}
+.middle {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.info {
+	display: flex;
+	width: 70%;
+	justify-content: space-evenly;
+	height: 130px;
+	box-shadow: 0px 3px 16px #0000001f;
+	border-radius: 0 0 8px 8px;
+	margin-bottom: 80px;
+}
+
+.infoCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.infoNumber {
+	font-size: 32px;
+	color: #2fc8b8;
+}
+
+.infoText {
+	font-weight: 600;
+}
+
+.infoOverall {
+	color: #888888;
+}
+
+.continental {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.continentalTitle {
+	font-family: "Bebas Neue", cursive;
+	font-size: 48px;
+}
+
+.card {
+	display: flex;
+	width: 500px;
+	height: 350px;
+	box-shadow: 0px 3px 16px #0000001f;
+	border-radius: 8px;
+}
+
+.left {
+	width: 50%;
+	border-radius: 8px 0 0 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.name {
+	font-family: "Bebas Neue", cursive;
+	font-size: 32px;
+}
+
+.newCases {
+	margin: 80px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: "Roboto", sans-serif;
+}
+
+.newCasesNumber {
+	color: #2fc8b8;
+	font-size: 56px;
+}
+
+.newCasesText {
+	font-weight: 700;
+}
+
+.allCases {
+	color: #888888;
+	font-family: "Roboto", sans-serif;
+}
+
+.right {
+	width: 50%;
+	background-color: #2fc8b8;
+	border-radius: 0 8px 8px 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.details {
+	height: 33.333%;
+	width: 100%;
+	border-bottom: 1px solid #888888;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: "Roboto", sans-serif;
+}
+
+.detailsNumber {
+	color: #ffffff;
+	font-size: 24px;
+	font-weight: 300;
+}
+
+.detailsText {
+	font-size: 12px;
+	font-weight: 700;
+	margin: 8px 0;
+}
+
+.detailsOverall {
+	color: #ffffff;
+	font-size: 14px;
+	margin: 12px 0;
+	font-weight: 300;
+}
+
+.profile {
+	margin-top: 100px;
+	width: 100%;
+	height: 620px;
+	background-color: #eef6f6;
+	display: flex;
+}
+
+.image {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #eef6f6;
+}
+
+.image > img {
+	width: 400px;
+	height: 400px;
+	object-fit: fill;
+	border-radius: 50%;
+}
+
+.personalInfo {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(219, 253, 251, 0.6);
+}
+
+.personalName {
+	font-family: "Bebas Neue", cursive;
+	font-size: 72px;
+	font-weight: 700;
+}
+
+.personalTitle {
+	font-family: "Roboto", sans-serif;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.date {
+	color: #888888;
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.reachMe {
+	width: 100%;
+	height: 400px;
+	background-color: #1e776e;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #ffffff;
+}
+
+.reachMeTitle {
+	font-size: 48px;
+	font-family: "Bebas Neue", cursive;
+}
+
+.contactDetails {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 12px;
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+}
+
+.detailsLabel {
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.footer {
+	height: 80px;
+	width: 100%;
+	background-color: #175b55;
+	color: #ffffff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	font-family: "Roboto", sans-serif;
+}
+
+.developer {
+	margin-left: 100px;
+}
+
+.designer {
+	margin-right: 100px;
 }
