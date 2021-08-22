@@ -32,50 +32,58 @@ const Carousel = ({ data }) => {
 
 	return (
 		<div className="cardsViewport">
-			<div
-				onClick={handlePrevious}
-				style={{
-					position: "absolute",
-					top: "50%",
-					left: "-100px",
-					height: "70px",
-					width: "70px",
-					backgroundColor: "#1e776e",
-					borderRadius: "50%",
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-					color: "#ffffff",
-					cursor: "pointer",
-					outline: "none",
-					border: "none",
-					zIndex: 5,
-				}}
-			>
-				<img src={Left} alt="<" />
-			</div>
-			<button
-				onClick={handleNext}
-				style={{
-					position: "absolute",
-					top: "50%",
-					right: "-100px",
-					height: "70px",
-					width: "70px",
-					backgroundColor: "#1e776e",
-					borderRadius: "50%",
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "center",
-					color: "#ffffff",
-					cursor: "pointer",
-					outline: "none",
-					border: "none",
-					zIndex: 5,
-				}}
-			>
-				<img src={Right} alt=">" />
-			</button>
+			{currentCard >= 1 ? (
+				<div
+					onClick={handlePrevious}
+					style={{
+						position: "absolute",
+						top: "50%",
+						left: "100px",
+						height: "70px",
+						width: "70px",
+						backgroundColor: "#1e776e",
+						borderRadius: "50%",
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						color: "#ffffff",
+						cursor: "pointer",
+						outline: "none",
+						border: "none",
+						zIndex: 5,
+					}}
+				>
+					<img src={Left} alt="<" />
+				</div>
+			) : (
+				""
+			)}
+			{currentCard <= 1 ? (
+				<div
+					onClick={handleNext}
+					style={{
+						position: "absolute",
+						top: "50%",
+						right: "100px",
+						height: "70px",
+						width: "70px",
+						backgroundColor: "#1e776e",
+						borderRadius: "50%",
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "center",
+						color: "#ffffff",
+						cursor: "pointer",
+						outline: "none",
+						border: "none",
+						zIndex: 5,
+					}}
+				>
+					<img src={Right} alt=">" />
+				</div>
+			) : (
+				""
+			)}
 			<div className="cards" ref={cards}>
 				{data.map((d) => (
 					<Card continent={d} />

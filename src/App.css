@@ -46,7 +46,7 @@
 }
 
 .search {
-	width: 600px;
+	max-width: 600px;
 	display: flex;
 	background-color: #e6f5f3;
 	height: 45px;
@@ -156,7 +156,8 @@
 
 .cardsViewport {
 	position: relative;
-	width: 960px;
+	width: 100%;
+	overflow: hidden;
 }
 
 .cards {
@@ -164,7 +165,6 @@
 	justify-content: center;
 	align-items: center;
 	height: 400px;
-	/* overflow: hidden; */
 	position: relative;
 }
 
