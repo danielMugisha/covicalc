@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Select from "react-select";
 import DateFnsUtils from "@date-io/date-fns";
@@ -7,17 +7,40 @@ import {
 	KeyboardDatePicker,
 } from "@material-ui/pickers";
 import profileImage from "./assets/toonProfile.png";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCountries } from "./store/actions/countriesActions";
+import Carousel from "./components/carousel/Carousel";
+import {
+	fetchContinentsData,
+	fetchCountryData,
+} from "./store/actions/dataActions";
 
-function App() {
+function App(props) {
+	const dispatch = useDispatch();
+	const { countries } = useSelector((state) => state.countries);
+	const { countryData } = useSelector((state) => state.data);
+	const { continentsData } = useSelector((state) => state.data);
+	console.log(continentsData);
 	const [selectedDate, setSelectedDate] = useState(new Date());
-	const options = [
-		{ value: "chocolate", label: "Chocolate" },
-		{ value: "strawberry", label: "Strawberry" },
-		{ value: "vanilla", label: "Vanilla" },
-	];
+	const options = countries.map((c) => {
+		const option = {
+			value: c.country,
+			label: (
+				<div className="country">
+					<img src={c.countryInfo.flag} />
+					<p>{c.country}</p>
+				</div>
+			),
+		};
+		return option;
+	});
 	const handleDateChange = (date) => {
 		setSelectedDate(date);
+	};
+
+	const handleChangeCountry = (selectedOption) => {
+		setCountry(selectedOption.value);
 	};
 
 	const styles = {
@@ -27,16 +50,21 @@ function App() {
 			minWidth: "150px",
 			borderRadius: "6px 0 0 6px",
 			margin: 0,
-			minHeight: "45px",
+			minHeight: "39px",
+			outline: "none",
 		}),
-
-		customDate: {
-			"& input::placeholder": {
-				fontWeight: "700",
-			},
-		},
 	};
-	const [country, setCountry] = useState("");
+	const [country, setCountry] = useState();
+
+	const handleSearch = () => {
+		dispatch(fetchCountryData(country));
+	};
+
+	useEffect(() => {
+		dispatch(fetchCountries());
+		dispatch(fetchContinentsData());
+	}, []);
+
 	return (
 		<Router>
 			<div className="App">
@@ -54,6 +82,7 @@ function App() {
 							<Select
 								options={options}
 								styles={styles}
+								onChange={handleChangeCountry}
 								components={{
 									IndicatorSeparator: () => null,
 								}}
@@ -82,78 +111,106 @@ function App() {
 							</MuiPickersUtilsProvider>
 						</div>
 						<div className="submitButton">
-							<button>SUBMIT</button>
+							<button onClick={handleSearch}>SUBMIT</button>
 						</div>
 					</div>
 					<div className="cumulative">
-						<div className="bigNumber">2,188,881</div>
+						<div className="bigNumber">
+							{countryData.cases
+								? countryData.cases
+										.toString()
+										.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+								: 0}
+						</div>
 						<div className="labelText">Cumulatively</div>
 					</div>
 				</div>
 				<div className="middle">
 					<div className="info">
 						<div className="infoCard">
-							<div className="infoNumber">11,270</div>
+							<div className="infoNumber">
+								{countryData.tests
+									? countryData.tests
+											.toString()
+											.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+									: 0}
+							</div>
 							<div className="infoText">Tests</div>
-							<div className="infoOverall">2,188,881</div>
+							<div className="infoOverall">
+								{countryData.population
+									?.toString()
+									.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+							</div>
 						</div>
 						<div className="infoCard">
-							<div className="infoNumber">11,270</div>
-							<div className="infoText">Tests</div>
-							<div className="infoOverall">2,188,881</div>
+							<div className="infoNumber">
+								{countryData.todayCases
+									? countryData.todayCases
+											.toString()
+											.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+									: 0}
+							</div>
+							<div className="infoText">Positive cases</div>
+							<div className="infoOverall">
+								{countryData.cases
+									?.toString()
+									.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+							</div>
 						</div>
 						<div className="infoCard">
-							<div className="infoNumber">11,270</div>
-							<div className="infoText">Tests</div>
-							<div className="infoOverall">2,188,881</div>
+							<div className="infoNumber">
+								{countryData.critical
+									? countryData.critical
+											.toString()
+											.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+									: 0}
+							</div>
+							<div className="infoText">Hospitalized</div>
+							<div className="infoOverall">
+								{countryData.active
+									?.toString()
+									.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+							</div>
 						</div>
 						<div className="infoCard">
-							<div className="infoNumber">11,270</div>
-							<div className="infoText">Tests</div>
-							<div className="infoOverall">2,188,881</div>
+							<div className="infoNumber">
+								{countryData.todayRecovered
+									? countryData.todayRecovered
+											.toString()
+											.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+									: 0}
+							</div>
+							<div className="infoText">Recovered</div>
+							<div className="infoOverall">
+								{countryData.recovered
+									?.toString()
+									.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+							</div>
 						</div>
 						<div className="infoCard">
-							<div className="infoNumber">11,270</div>
-							<div className="infoText">Tests</div>
-							<div className="infoOverall">2,188,881</div>
+							<div className="infoNumber">
+								{countryData.todayDeaths
+									? countryData.todayDeaths
+											.toString()
+											.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+									: 0}
+							</div>
+							<div className="infoText">Deaths</div>
+							<div className="infoOverall">
+								{countryData.deaths
+									?.toString()
+									.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+							</div>
 						</div>
-						<div className="infoCard">
+						{/* <div className="infoCard">
 							<div className="infoNumber">11,270</div>
-							<div className="infoText">Tests</div>
+							<div className="infoText">Vaccinated</div>
 							<div className="infoOverall">2,188,881</div>
-						</div>
+						</div> */}
 					</div>
 					<div className="continental">
 						<div className="continentalTitle">PER CONTINENT</div>
-						<div className="cards">
-							<div className="card">
-								<div className="left">
-									<div className="name">Asia</div>
-									<div className="newCases">
-										<div className="newCasesNumber">354,270</div>
-										<div className="newCasesText">New cases</div>
-									</div>
-									<div className="allCases">All cases: 89,188,881</div>
-								</div>
-								<div className="right">
-									<div className="details">
-										<div className="detailsNumber">14,764</div>
-										<div className="detailsText">New deaths</div>
-										<div className="detailsOverall">Total deaths: 4,254</div>
-									</div>
-									<div className="details">
-										<div className="detailsNumber">14,764</div>
-										<div className="detailsText">New deaths</div>
-										<div className="detailsOverall">Total deaths: 4,254</div>
-									</div>
-									<div className="details" style={{ border: "none" }}>
-										<div className="detailsNumber">14,764</div>
-										<div className="detailsText">New deaths</div>
-										<div className="detailsOverall">Total deaths: 4,254</div>
-									</div>
-								</div>
-							</div>
-						</div>
+						<Carousel data={continentsData} />
 					</div>
 					<div className="profile">
 						<div className="image">

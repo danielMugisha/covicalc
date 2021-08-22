@@ -1,3 +1,6 @@
+* {
+	box-sizing: border-box;
+}
 .header {
 	background-color: #2fc8b8;
 	display: flex;
@@ -30,7 +33,7 @@
 	letter-spacing: 1px;
 }
 .updates {
-	font-size: 72px;
+	font-size: 68px;
 	font-family: "Bebas Neue", cursive;
 	color: #ffffff;
 }
@@ -39,6 +42,7 @@
 	font-size: 18px;
 	font-family: "Roboto", sans-serif;
 	color: #ffffff;
+	margin-bottom: 24px;
 }
 
 .search {
@@ -53,6 +57,11 @@
 .searchCombo {
 	width: 250px;
 }
+
+.searchCombo > input {
+	outline: none;
+}
+
 .calendarBox {
 	width: 250px;
 	display: flex;
@@ -65,6 +74,7 @@
 .submitButton {
 	height: 100%;
 	width: 100px;
+	cursor: pointer;
 }
 
 .submitButton > button {
@@ -136,6 +146,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
 }
 
 .continentalTitle {
@@ -143,12 +154,50 @@
 	font-size: 48px;
 }
 
+.cardsViewport {
+	position: relative;
+	width: 960px;
+}
+
+.cards {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 400px;
+	/* overflow: hidden; */
+	position: relative;
+}
+
+.arrow {
+	color: #000;
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	background-color: #1e776e;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #ffffff;
+	cursor: pointer;
+	outline: none;
+	border: none;
+}
+
+.rightArrow {
+	right: 0;
+}
+.leftArrow {
+	left: 0;
+}
+
 .card {
 	display: flex;
-	width: 500px;
-	height: 350px;
+	min-width: 400px;
+	height: 250px;
 	box-shadow: 0px 3px 16px #0000001f;
 	border-radius: 8px;
+	margin: 0 40px;
 }
 
 .left {
@@ -163,10 +212,12 @@
 .name {
 	font-family: "Bebas Neue", cursive;
 	font-size: 32px;
+	max-width: 80%;
+	text-align: center;
 }
 
 .newCases {
-	margin: 80px 0;
+	margin: 30px 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -175,7 +226,7 @@
 
 .newCasesNumber {
 	color: #2fc8b8;
-	font-size: 56px;
+	font-size: 48px;
 }
 
 .newCasesText {
@@ -217,13 +268,13 @@
 .detailsText {
 	font-size: 12px;
 	font-weight: 700;
-	margin: 8px 0;
+	margin: 2px 0;
 }
 
 .detailsOverall {
 	color: #ffffff;
 	font-size: 14px;
-	margin: 12px 0;
+	margin: 6px 0;
 	font-weight: 300;
 }
 
@@ -326,4 +377,18 @@
 
 .designer {
 	margin-right: 100px;
+}
+
+.country {
+	display: flex;
+	align-items: center;
+	font-size: 16px;
+	font-weight: 500;
+	font-family: "Roboto", sans-serif;
+}
+
+.country > img {
+	width: auto;
+	height: 18px;
+	margin-right: 8px;
 }
